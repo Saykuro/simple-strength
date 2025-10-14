@@ -1,97 +1,175 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Simple Strength
 
-# Getting Started
+Eine minimalistische React Native App für Krafttraining-Tracking, entwickelt nach den höchsten Qualitätsstandards.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🏋️ Features
 
-## Step 1: Start Metro
+### Phase 1: MVP (Implementiert)
+- ✅ **Onboarding**: 3-stufiger Willkommens-Screen mit beliebten Übungen
+- ✅ **Exercise Builder**: Erstelle individuelle Übungen mit flexiblen Tracking-Komponenten
+- ✅ **Workout Tracking**: Echtzeit-Timer und intuitive Satz-Protokollierung
+- ✅ **Exercise Library**: Durchsuchbare Übungsbibliothek
+- ✅ **Offline-Funktionalität**: Persistente Datenspeicherung mit MMKV
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### Geplant (Phase 2)
+- 📊 Fortschrittsvisualisierung mit Graphen
+- 🏆 Personal Records (PRs) und Gamification
+- ⌚ Garmin Connect Integration (Pro-Feature)
+- 📈 1-Rep-Max Berechnungen und Trends
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 🛠️ Tech Stack
 
-```sh
-# Using npm
-npm start
+- **Frontend**: React Native + Expo
+- **Backend**: Convex (Ready to integrate)
+- **Authentication**: Clerk (Ready to integrate) 
+- **State Management**: Zustand mit MMKV Persistierung
+- **Code Quality**: BiomeJS (Linting & Formatting)
+- **Testing**: Jest + React Native Testing Library
+- **CI/CD**: GitHub Actions (Ready to setup)
 
-# OR using Yarn
-yarn start
-```
+## 🚀 Entwicklung
 
-## Step 2: Build and run your app
+### Voraussetzungen
+- Node.js 18+
+- npm oder pnpm
+- Expo CLI
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### Installation
+```bash
+# Abhängigkeiten installieren
+npm install --legacy-peer-deps
 
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# iOS Simulator starten
 npm run ios
 
-# OR using Yarn
-yarn ios
+# Android Emulator starten  
+npm run android
+
+# Web Development Server
+npm run web
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Code-Qualität
+Dieses Projekt folgt strengen Qualitätsrichtlinien entsprechend der GitHub Copilot Instructions:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```bash
+# Build (MUSS erfolgreich sein)
+npm run build
 
-## Step 3: Modify your app
+# Tests (MUSS erfolgreich sein)
+npm test
 
-Now that you have successfully run the app, let's make changes!
+# Linting (MUSS erfolgreich sein)
+npm run lint
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+# TypeScript Check (MUSS erfolgreich sein)
+npm run typecheck
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+**KRITISCHE REGEL**: Alle 4 Befehle müssen erfolgreich ausgeführt werden, bevor Code committet werden darf.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+### Architektur-Prinzipien
 
-## Congratulations! :tada:
+**SOLID & Clean Code**
+- **SRP**: Jede Komponente/Funktion hat genau eine Verantwortung
+- **DIP**: Abhängigkeiten über Abstraktionen (Hooks/Services)
+- **DRY**: Wiederverwendbare Logik in `/src/utils`
+- **KISS**: Einfachste, lesbare Lösung bevorzugen
 
-You've successfully run and modified your React Native App. :partying_face:
+**Sicherheit**
+- Server-side Validierung mit Zod für alle API-Eingaben
+- Authentifizierung/Autorisierung für geschützte Daten
+- Secrets ausschließlich in Umgebungsvariablen
 
-### Now what?
+**State Management**
+- Granulare Zustand-Stores pro Domäne
+- Selektoren zur Performance-Optimierung
+- Geschäftslogik in Store-Actions
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## 📱 App-Struktur
 
-# Troubleshooting
+```
+src/
+├── components/          # Wiederverwendbare UI-Komponenten
+│   ├── Button.tsx
+│   ├── Input.tsx
+│   ├── Card.tsx
+│   └── ...
+├── screens/            # Haupt-Screens der App
+│   ├── OnboardingScreen.tsx
+│   ├── HomeScreen.tsx
+│   ├── WorkoutTrackingScreen.tsx
+│   └── ...
+├── stores/             # Zustand-Management
+│   ├── workoutStore.ts
+│   ├── exerciseStore.ts
+│   └── ...
+├── utils/              # Hilfsfunktionen & Berechnungen
+│   ├── calculations.ts
+│   └── ...
+├── types/              # TypeScript-Typdefinitionen
+├── constants/          # App-Konstanten
+└── services/           # API & externe Services
+```
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 🎯 Design-Prinzipien
 
-# Learn More
+### Radikale Einfachheit
+- Minimalistisches UI ohne Ablenkungen
+- Maximal 3 Klicks zu jeder Funktion
+- Fokus auf Geschwindigkeit und Effizienz
 
-To learn more about React Native, take a look at the following resources:
+### Maximale Flexibilität  
+- Benutzerdefinierte Übungen mit beliebigen Tracking-Komponenten
+- Keine Vorgaben oder Einschränkungen
+- App passt sich dem Nutzer an
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### Sichtbare Motivation
+- Echtzeit-Feedback und Fortschrittsanzeigen
+- Feier von Personal Records
+- Einfache, motivierende Statistiken
+
+## 📊 Testing
+
+Das Projekt implementiert umfassende Tests auf mehreren Ebenen:
+
+- **Unit Tests**: Geschäftslogik und Utility-Funktionen
+- **Integration Tests**: Komponenten-Interaktionen (geplant)  
+- **E2E Tests**: Kritische User-Flows (geplant mit Detox)
+
+Aktuelle Test-Coverage: Utility-Funktionen (100%)
+
+## 🚢 Deployment
+
+### Development
+```bash
+# Expo Development Build
+npm run build
+
+# Lokaler Preview
+npx expo start --tunnel
+```
+
+### Production (Geplant)
+- iOS App Store via EAS Build
+- Google Play Store via EAS Build
+- Automatisierte Releases via GitHub Actions
+
+## 📄 Lizenz
+
+MIT License - Siehe [LICENSE](LICENSE) Datei.
+
+## 🤝 Beitragen
+
+1. Fork das Repository
+2. Erstelle einen Feature-Branch (`git checkout -b feature/amazing-feature`)
+3. **Führe alle Qualitätsprüfungen durch** (`npm run build && npm test && npm run lint && npm run typecheck`)
+4. Commit deine Änderungen (`git commit -m 'Add amazing feature'`)
+5. Push zum Branch (`git push origin feature/amazing-feature`)
+6. Öffne eine Pull Request
+
+**Wichtig**: PRs werden nur akzeptiert, wenn alle Code-Qualität-Checks bestehen.
+
+---
+
+*Simple Strength - Das einfachste Workout-Tracking für sichtbaren Fortschritt. Kein Schnickschnack, nur deine Stärke.*

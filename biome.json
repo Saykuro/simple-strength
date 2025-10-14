@@ -1,5 +1,14 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": ["**", "!**/node_modules/**/*", "!**/dist/**/*", "!**/.expo/**/*", "!**/ios/**/*", "!**/android/**/*"]
+  },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
@@ -9,9 +18,29 @@
     "lineWidth": 120,
     "attributePosition": "auto"
   },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "error"
+      },
+      "style": {
+        "noNonNullAssertion": "error",
+        "useConst": "error",
+        "useExportType": "error",
+        "useImportType": "error",
+        "useTemplate": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      }
+    }
+  },
   "javascript": {
     "formatter": {
-      "enabled": true,
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",
       "trailingCommas": "es5",
@@ -22,15 +51,5 @@
       "quoteStyle": "single",
       "attributePosition": "auto"
     }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
-  },
-  "files": {
-    "includes": ["src/**/*", "*.ts", "*.tsx", "*.js", "*.jsx"],
-    "ignoreUnknown": true
   }
 }

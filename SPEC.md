@@ -6,7 +6,7 @@
 
 ## 1. Projektübersicht & Vision
 
-"Simple Strength" ist eine mobile Cross-Platform-Anwendung (iOS & Android), entwickelt mit React Native. Die App bietet Nutzern die einfachste und flexibelste Möglichkeit, ihr Krafttraining zu protokollieren und ihren Fortschritt zu visualisieren.
+"Simple Strength" ist eine mobile Cross-Platform-Anwendung (iOS & Android), entwickelt mit React Native + Expo. Die App bietet Nutzern die einfachste und flexibelste Möglichkeit, ihr Krafttraining zu protokollieren und ihren Fortschritt zu visualisieren.
 
 **Vision:** Wir beseitigen die Komplexität und Unübersichtlichkeit moderner Fitness-Apps und fokussieren uns auf das Wesentliche: den Nutzer bei der Erreichung seiner Ziele durch klare, motivierende Fortschrittsdaten zu unterstützen.
 
@@ -34,7 +34,7 @@
 
 | Kategorie | Tool | Rolle im Projekt |
 |-----------|------|------------------|
-| Frontend | React Native | Cross-Platform-Entwicklung für iOS & Android. |
+| Frontend | React Native + Expo | Cross-Platform-Entwicklung für iOS & Android. |
 | Backend | Convex | Datenbank, Serverless-Funktionen und Echtzeit-Synchronisation. |
 | Authentifizierung | Clerk | Sichere Benutzerverwaltung und Login. |
 | State Management | Zustand | Minimalistische, clientseitige Zustandsverwaltung (mit Persistenz). |

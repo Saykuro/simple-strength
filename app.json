@@ -1,26 +1,32 @@
 {
-  "name": "SimpleStrength",
-  "displayName": "SimpleStrength",
   "expo": {
     "name": "simple-strength",
     "slug": "simple-strength",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "newArchEnabled": true,
+    "plugins": ["expo-build-properties"],
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.simple-strength"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
     },
-    "extra": {
-      "CONVEX_URL": "http://127.0.0.1:3210",
-      "CLERK_PUBLISHABLE_KEY": ""
+    "web": {
+      "favicon": "./assets/favicon.png"
     }
   }
 }
