@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import ExerciseBuilderScreen from './src/screens/ExerciseBuilderScreen';
+import ExerciseDetailScreen from './src/screens/ExerciseDetailScreen';
 import ExerciseLibraryScreen from './src/screens/ExerciseLibraryScreen';
 import HomeScreen from './src/screens/HomeScreen';
 // Screens
@@ -11,15 +12,17 @@ import WorkoutTrackingScreen from './src/screens/WorkoutTrackingScreen';
 import { useExerciseStore } from './src/stores/exerciseStore';
 // Stores
 import { useWorkoutStore } from './src/stores/workoutStore';
+import type { Exercise } from './src/types';
 
-type Screen = 'onboarding' | 'home' | 'workout' | 'exercises' | 'exercise-builder';
+type Screen = 'onboarding' | 'home' | 'workout' | 'exercises' | 'exercise-builder' | 'exercise-detail';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('onboarding');
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
 
   const { isWorkoutActive, startWorkout } = useWorkoutStore();
-  const { exercises, initializeWithPopularExercises } = useExerciseStore();
+  const { exercises } = useExerciseStore();
 
   // Check if user has completed onboarding
   useEffect(() => {
@@ -65,9 +68,13 @@ export default function App() {
     }
   };
 
-  const handleExerciseSelect = () => {
-    // Handle exercise selection if needed
-    // For now, just return to exercises list
+  const handleExerciseSelect = (exercise: Exercise) => {
+    setSelectedExercise(exercise);
+    setCurrentScreen('exercise-detail');
+  };
+
+  const handleExerciseDetailBack = () => {
+    setCurrentScreen('exercises');
   };
 
   const renderScreen = () => {
@@ -96,6 +103,13 @@ export default function App() {
       case 'exercise-builder':
         return (
           <ExerciseBuilderScreen onComplete={handleExerciseBuilderComplete} onCancel={handleExerciseBuilderCancel} />
+        );
+
+      case 'exercise-detail':
+        return selectedExercise ? (
+          <ExerciseDetailScreen exercise={selectedExercise} onBack={handleExerciseDetailBack} />
+        ) : (
+          <ExerciseLibraryScreen onSelectExercise={handleExerciseSelect} onCreateExercise={handleCreateExercise} />
         );
 
       default:

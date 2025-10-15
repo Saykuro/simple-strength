@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 export interface CardProps {
   children: React.ReactNode;

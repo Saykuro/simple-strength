@@ -6,7 +6,6 @@ import Card from '../components/Card';
 import Checkbox from '../components/Checkbox';
 import { POPULAR_EXERCISES } from '../constants/exercises';
 import { useExerciseStore } from '../stores/exerciseStore';
-import type { Exercise } from '../types';
 
 interface OnboardingScreenProps {
   onComplete: () => void;
@@ -40,6 +39,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onComplete }) => {
 
   const steps = [
     {
+      id: 'welcome',
       title: 'Willkommen bei Simple Strength!',
       subtitle: 'Die einfachste Art, dein Training zu tracken',
       content: (
@@ -71,6 +71,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onComplete }) => {
       ),
     },
     {
+      id: 'exercises',
       title: 'Wähle deine Übungen',
       subtitle: 'Fülle deine Bibliothek mit beliebten Übungen',
       content: (
@@ -88,6 +89,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onComplete }) => {
       ),
     },
     {
+      id: 'ready',
       title: 'Bereit zum Start!',
       subtitle: `Du hast ${selectedExercises.size} Übungen ausgewählt`,
       content: (
@@ -106,8 +108,11 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onComplete }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.progressContainer}>
-          {steps.map((_, index) => (
-            <View key={`progress-${index}`} style={[styles.progressDot, index <= currentStep && styles.progressDotActive]} />
+          {steps.map((step) => (
+            <View
+              key={step.id}
+              style={[styles.progressDot, steps.indexOf(step) <= currentStep && styles.progressDotActive]}
+            />
           ))}
         </View>
       </View>

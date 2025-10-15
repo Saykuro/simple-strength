@@ -9,6 +9,13 @@ export interface Exercise {
   trackDistance: boolean;
   trackNotes: boolean;
   isPopular?: boolean;
+  trackingComponents: {
+    weight: boolean;
+    reps: boolean;
+    time: boolean;
+    distance: boolean;
+    notes: boolean;
+  };
 }
 
 export interface WorkoutSet {
@@ -66,6 +73,6 @@ export interface ExerciseWithLastSet extends Exercise {
 }
 
 export interface WorkoutWithSets extends Workout {
-  sets: WorkoutSet[];
-  exercises: Exercise[];
+  sets?: WorkoutSet[];
+  exercises?: Exercise[];
 }

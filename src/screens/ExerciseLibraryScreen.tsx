@@ -1,5 +1,4 @@
 import type React from 'react';
-import { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Button from '../components/Button';
 import ExerciseItem from '../components/ExerciseItem';

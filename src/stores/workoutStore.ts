@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import type { Exercise, ExerciseWithLastSet, Workout, WorkoutSet } from '../types';
+import type { Exercise, ExerciseWithLastSet, Workout, WorkoutSet, WorkoutWithSets } from '../types';
 import { zustandStorage } from '../utils/storage';
 
 interface WorkoutState {
@@ -10,6 +10,9 @@ interface WorkoutState {
   activeWorkoutExercises: ExerciseWithLastSet[];
   isWorkoutActive: boolean;
   workoutStartTime: number | null;
+
+  // Completed workouts history
+  completedWorkouts: WorkoutWithSets[];
 
   // Actions
   startWorkout: () => void;
@@ -34,6 +37,7 @@ export const useWorkoutStore = create<WorkoutState>()(
       activeWorkoutExercises: [],
       isWorkoutActive: false,
       workoutStartTime: null,
+      completedWorkouts: [],
 
       // Actions
       startWorkout: () => {
@@ -61,16 +65,18 @@ export const useWorkoutStore = create<WorkoutState>()(
         const endTime = Date.now();
         const duration = state.workoutStartTime ? Math.floor((endTime - state.workoutStartTime) / 1000) : 0;
 
-        // Update workout with end time and duration
-        const updatedWorkout: Workout = {
+        // Create completed workout with sets
+        const completedWorkout: WorkoutWithSets = {
           ...state.activeWorkout,
           endTime,
           duration,
+          sets: state.activeWorkoutSets,
+          exercises: state.activeWorkoutExercises,
         };
 
-        // Here we would normally save to Convex
-        // For now, we just clear the local state
+        // Save to completed workouts
         set({
+          completedWorkouts: [...state.completedWorkouts, completedWorkout],
           activeWorkout: null,
           activeWorkoutSets: [],
           activeWorkoutExercises: [],

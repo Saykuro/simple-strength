@@ -2,7 +2,6 @@ import type React from 'react';
 import { useEffect, useState } from 'react';
 import { Modal, StyleSheet, Text, View } from 'react-native';
 import type { Exercise, SetInput } from '../types';
-import { formatTime } from '../utils/calculations';
 import Button from './Button';
 import Input from './Input';
 
@@ -43,7 +42,7 @@ const SetInputModal: React.FC<SetInputModalProps> = ({ visible, exercise, onSubm
       setDistance('');
       setNotes('');
     }
-  }, [initialValues, visible]);
+  }, [initialValues]);
 
   const handleSubmit = () => {
     const setData: SetInput = {};

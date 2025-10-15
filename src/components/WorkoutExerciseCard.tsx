@@ -1,6 +1,6 @@
 import type React from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
-import type { Exercise, ExerciseWithLastSet, WorkoutSet } from '../types';
+import type { ExerciseWithLastSet, WorkoutSet } from '../types';
 import { formatSet } from '../utils/calculations';
 import Button from './Button';
 import Card from './Card';

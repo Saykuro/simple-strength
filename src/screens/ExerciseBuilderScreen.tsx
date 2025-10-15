@@ -62,6 +62,13 @@ const ExerciseBuilderScreen: React.FC<ExerciseBuilderScreenProps> = ({ onComplet
         trackTime: trackingComponents.time,
         trackDistance: trackingComponents.distance,
         trackNotes: trackingComponents.notes,
+        trackingComponents: {
+          weight: trackingComponents.weight,
+          reps: trackingComponents.reps,
+          time: trackingComponents.time,
+          distance: trackingComponents.distance,
+          notes: trackingComponents.notes,
+        },
       };
 
       addExercise(exerciseData);
@@ -70,7 +77,7 @@ const ExerciseBuilderScreen: React.FC<ExerciseBuilderScreenProps> = ({ onComplet
       Alert.alert('Erfolgreich erstellt!', `Die Übung "${exerciseName}" wurde zu deiner Bibliothek hinzugefügt.`, [
         { text: 'OK', onPress: onComplete },
       ]);
-    } catch (error) {
+    } catch (_error) {
       Alert.alert('Fehler', 'Die Übung konnte nicht erstellt werden. Bitte versuche es erneut.');
     } finally {
       setCreating(false);

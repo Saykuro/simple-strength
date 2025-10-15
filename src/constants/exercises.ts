@@ -9,6 +9,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: true,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Bankdrücken',
@@ -18,6 +25,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: true,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Kreuzheben',
@@ -27,6 +41,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: true,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Überkopfdrücken',
@@ -36,6 +57,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: true,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Klimmzüge',
@@ -45,6 +73,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Liegestütze',
@@ -54,6 +89,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Langhantelrudern',
@@ -63,6 +105,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: true,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Dips',
@@ -72,6 +121,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Bizeps-Curls',
@@ -81,6 +137,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: true,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Planks',
@@ -90,6 +153,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: false,
+      time: true,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Laufen',
@@ -99,6 +169,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: true,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: false,
+      time: true,
+      distance: true,
+      notes: true,
+    },
   },
   {
     name: 'Radfahren',
@@ -108,6 +185,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: true,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: false,
+      time: true,
+      distance: true,
+      notes: true,
+    },
   },
   {
     name: 'Burpees',
@@ -117,6 +201,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Mountain Climbers',
@@ -126,6 +217,13 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: false,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
   {
     name: 'Lunges',
@@ -135,5 +233,12 @@ export const POPULAR_EXERCISES: Omit<Exercise, '_id' | '_creationTime' | 'userId
     trackDistance: false,
     trackNotes: true,
     isPopular: true,
+    trackingComponents: {
+      weight: true,
+      reps: true,
+      time: false,
+      distance: false,
+      notes: true,
+    },
   },
 ];
