@@ -8,18 +8,27 @@ import ExerciseLibraryScreen from './src/screens/ExerciseLibraryScreen';
 import HomeScreen from './src/screens/HomeScreen';
 // Screens
 import OnboardingScreen from './src/screens/OnboardingScreen';
+import WorkoutDetailScreen from './src/screens/WorkoutDetailScreen';
 import WorkoutTrackingScreen from './src/screens/WorkoutTrackingScreen';
 import { useExerciseStore } from './src/stores/exerciseStore';
 // Stores
 import { useWorkoutStore } from './src/stores/workoutStore';
-import type { Exercise } from './src/types';
+import type { CompletedWorkout, Exercise } from './src/types';
 
-type Screen = 'onboarding' | 'home' | 'workout' | 'exercises' | 'exercise-builder' | 'exercise-detail';
+type Screen =
+  | 'onboarding'
+  | 'home'
+  | 'workout'
+  | 'exercises'
+  | 'exercise-builder'
+  | 'exercise-detail'
+  | 'workout-detail';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('onboarding');
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
+  const [selectedWorkout, setSelectedWorkout] = useState<CompletedWorkout | null>(null);
 
   const { isWorkoutActive, startWorkout } = useWorkoutStore();
   const { exercises } = useExerciseStore();
@@ -54,6 +63,10 @@ export default function App() {
     setCurrentScreen('exercises');
   };
 
+  const handleBackToHome = () => {
+    setCurrentScreen('home');
+  };
+
   const handleCreateExercise = () => {
     setCurrentScreen('exercise-builder');
   };
@@ -73,6 +86,11 @@ export default function App() {
     setCurrentScreen('exercise-detail');
   };
 
+  const handleViewWorkout = (workout: CompletedWorkout) => {
+    setSelectedWorkout(workout);
+    setCurrentScreen('workout-detail');
+  };
+
   const handleExerciseDetailBack = () => {
     setCurrentScreen('exercises');
   };
@@ -89,15 +107,20 @@ export default function App() {
             onStartWorkout={handleStartWorkout}
             onOpenExercises={handleOpenExercises}
             onCreateExercise={handleCreateExercise}
+            onViewWorkout={handleViewWorkout}
           />
         );
 
       case 'workout':
-        return <WorkoutTrackingScreen onWorkoutComplete={handleWorkoutComplete} />;
+        return <WorkoutTrackingScreen onWorkoutComplete={handleWorkoutComplete} onBack={handleBackToHome} />;
 
       case 'exercises':
         return (
-          <ExerciseLibraryScreen onSelectExercise={handleExerciseSelect} onCreateExercise={handleCreateExercise} />
+          <ExerciseLibraryScreen
+            onSelectExercise={handleExerciseSelect}
+            onCreateExercise={handleCreateExercise}
+            onBack={handleBackToHome}
+          />
         );
 
       case 'exercise-builder':
@@ -109,7 +132,23 @@ export default function App() {
         return selectedExercise ? (
           <ExerciseDetailScreen exercise={selectedExercise} onBack={handleExerciseDetailBack} />
         ) : (
-          <ExerciseLibraryScreen onSelectExercise={handleExerciseSelect} onCreateExercise={handleCreateExercise} />
+          <ExerciseLibraryScreen
+            onSelectExercise={handleExerciseSelect}
+            onCreateExercise={handleCreateExercise}
+            onBack={handleBackToHome}
+          />
+        );
+
+      case 'workout-detail':
+        return selectedWorkout ? (
+          <WorkoutDetailScreen workout={selectedWorkout} onBack={handleBackToHome} />
+        ) : (
+          <HomeScreen
+            onStartWorkout={handleStartWorkout}
+            onOpenExercises={handleOpenExercises}
+            onCreateExercise={handleCreateExercise}
+            onViewWorkout={handleViewWorkout}
+          />
         );
 
       default:
@@ -118,6 +157,7 @@ export default function App() {
             onStartWorkout={handleStartWorkout}
             onOpenExercises={handleOpenExercises}
             onCreateExercise={handleCreateExercise}
+            onViewWorkout={handleViewWorkout}
           />
         );
     }

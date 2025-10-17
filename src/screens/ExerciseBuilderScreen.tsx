@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useState } from 'react';
-import { Alert, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
 import Input from '../components/Input';

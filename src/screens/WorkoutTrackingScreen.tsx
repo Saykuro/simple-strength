@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useEffect, useState } from 'react';
-import { Alert, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../components/Button';
 import SetInputModal from '../components/SetInputModal';
 import WorkoutExerciseCard from '../components/WorkoutExerciseCard';
@@ -11,9 +12,10 @@ import ExerciseLibraryScreen from './ExerciseLibraryScreen';
 
 interface WorkoutTrackingScreenProps {
   onWorkoutComplete: () => void;
+  onBack?: () => void;
 }
 
-const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkoutComplete }) => {
+const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkoutComplete, onBack }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [showExerciseLibrary, setShowExerciseLibrary] = useState(false);
   const [showSetInput, setShowSetInput] = useState(false);
@@ -138,6 +140,7 @@ const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkout
       <ExerciseLibraryScreen
         onSelectExercise={handleAddExercise}
         onCreateExercise={() => {}} // TODO: Navigate to exercise builder
+        onBack={() => setShowExerciseLibrary(false)}
         selectedExercises={activeWorkoutExercises}
       />
     );
@@ -156,6 +159,9 @@ const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkout
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
+        {onBack && (
+          <Button title="← Zurück" variant="secondary" size="small" onPress={onBack} style={styles.backButton} />
+        )}
         <View style={styles.timerContainer}>
           <Text style={styles.timerLabel}>Workout-Zeit</Text>
           <Text style={styles.timer}>{formatTime(elapsedTime)}</Text>
@@ -236,9 +242,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
+    gap: 12,
+  },
+  backButton: {
+    paddingVertical: 8,
   },
   timerContainer: {
     alignItems: 'flex-start',
+    flex: 1,
   },
   timerLabel: {
     fontSize: 14,

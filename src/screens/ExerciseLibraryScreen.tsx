@@ -1,5 +1,6 @@
 import type React from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../components/Button';
 import ExerciseItem from '../components/ExerciseItem';
 import Input from '../components/Input';
@@ -9,12 +10,14 @@ import type { Exercise } from '../types';
 interface ExerciseLibraryScreenProps {
   onSelectExercise: (exercise: Exercise) => void;
   onCreateExercise: () => void;
+  onBack?: () => void;
   selectedExercises?: Exercise[];
 }
 
 const ExerciseLibraryScreen: React.FC<ExerciseLibraryScreenProps> = ({
   onSelectExercise,
   onCreateExercise,
+  onBack,
   selectedExercises = [],
 }) => {
   const { searchQuery, setSearchQuery, getFilteredExercises, isLoading } = useExerciseStore();
@@ -72,10 +75,15 @@ const ExerciseLibraryScreen: React.FC<ExerciseLibraryScreenProps> = ({
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Übungen</Text>
-        <Text style={styles.subtitle}>
-          {filteredExercises.length} {filteredExercises.length === 1 ? 'Übung' : 'Übungen'} verfügbar
-        </Text>
+        <View style={styles.headerTop}>
+          {onBack && <Button title="← Zurück" variant="secondary" onPress={onBack} style={styles.backButton} />}
+          <View style={styles.headerTitles}>
+            <Text style={styles.title}>Übungen</Text>
+            <Text style={styles.subtitle}>
+              {filteredExercises.length} {filteredExercises.length === 1 ? 'Übung' : 'Übungen'} verfügbar
+            </Text>
+          </View>
+        </View>
       </View>
 
       <View style={styles.searchContainer}>
@@ -114,6 +122,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 16,
     paddingBottom: 16,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  backButton: {
+    paddingVertical: 8,
+  },
+  headerTitles: {
+    flex: 1,
   },
   title: {
     fontSize: 28,

@@ -76,3 +76,5 @@ export interface WorkoutWithSets extends Workout {
   sets?: WorkoutSet[];
   exercises?: Exercise[];
 }
+
+export type CompletedWorkout = WorkoutWithSets;

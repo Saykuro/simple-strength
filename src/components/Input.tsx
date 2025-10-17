@@ -6,7 +6,7 @@ export interface InputProps {
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
-  keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
+  keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad' | 'decimal-pad' | 'number-pad';
   multiline?: boolean;
   numberOfLines?: number;
   editable?: boolean;

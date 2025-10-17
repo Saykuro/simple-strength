@@ -1,17 +1,25 @@
 import type React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import { useExerciseStore } from '../stores/exerciseStore';
 import { useWorkoutStore } from '../stores/workoutStore';
+import type { CompletedWorkout } from '../types';
 
 interface HomeScreenProps {
   onStartWorkout: () => void;
   onOpenExercises: () => void;
   onCreateExercise: () => void;
+  onViewWorkout: (workout: CompletedWorkout) => void;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onStartWorkout, onOpenExercises, onCreateExercise }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({
+  onStartWorkout,
+  onOpenExercises,
+  onCreateExercise,
+  onViewWorkout,
+}) => {
   const { isWorkoutActive, completedWorkouts } = useWorkoutStore();
   const { exercises } = useExerciseStore();
 
@@ -192,17 +200,22 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartWorkout, onOpenExercises
             <View style={styles.historySection}>
               <Text style={styles.sectionTitle}>Letzte Workouts</Text>
               {recentWorkouts.map((workout) => (
-                <Card key={workout._id} style={styles.workoutCard}>
-                  <View style={styles.workoutHeader}>
-                    <Text style={styles.workoutDate}>{formatWorkoutDate(workout.endTime || workout.startTime)}</Text>
-                    {workout.duration && <Text style={styles.workoutDuration}>{formatDuration(workout.duration)}</Text>}
-                  </View>
-                  <View style={styles.workoutStats}>
-                    <Text style={styles.workoutStat}>
-                      {workout.exercises?.length || 0} Übungen • {workout.sets?.length || 0} Sätze
-                    </Text>
-                  </View>
-                </Card>
+                <TouchableOpacity key={workout._id} onPress={() => onViewWorkout(workout)} activeOpacity={0.7}>
+                  <Card style={styles.workoutCard}>
+                    <View style={styles.workoutHeader}>
+                      <Text style={styles.workoutDate}>{formatWorkoutDate(workout.endTime || workout.startTime)}</Text>
+                      {workout.duration && (
+                        <Text style={styles.workoutDuration}>{formatDuration(workout.duration)}</Text>
+                      )}
+                    </View>
+                    <View style={styles.workoutStats}>
+                      <Text style={styles.workoutStat}>
+                        {workout.exercises?.length || 0} Übungen • {workout.sets?.length || 0} Sätze
+                      </Text>
+                    </View>
+                    <Text style={styles.tapHint}>Tippen für Details →</Text>
+                  </Card>
+                </TouchableOpacity>
               ))}
             </View>
           )}
@@ -355,6 +368,12 @@ const styles = StyleSheet.create({
   workoutStat: {
     fontSize: 14,
     color: '#999999',
+  },
+  tapHint: {
+    fontSize: 12,
+    color: '#007AFF',
+    marginTop: 8,
+    fontWeight: '500',
   },
 });
 
