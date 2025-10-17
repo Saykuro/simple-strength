@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../components/Button';
-import SetInputModal from '../components/SetInputModal';
 import WorkoutExerciseCard from '../components/WorkoutExerciseCard';
 import { useWorkoutStore } from '../stores/workoutStore';
-import type { Exercise, ExerciseWithLastSet, SetInput, WorkoutSet } from '../types';
+import type { Exercise, SetInput, WorkoutSet } from '../types';
 import { formatTime } from '../utils/calculations';
 import ExerciseLibraryScreen from './ExerciseLibraryScreen';
 
@@ -18,9 +17,6 @@ interface WorkoutTrackingScreenProps {
 const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkoutComplete, onBack }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [showExerciseLibrary, setShowExerciseLibrary] = useState(false);
-  const [showSetInput, setShowSetInput] = useState(false);
-  const [selectedExercise, setSelectedExercise] = useState<ExerciseWithLastSet | null>(null);
-  const [editingSet, setEditingSet] = useState<WorkoutSet | null>(null);
 
   const {
     activeWorkout,
@@ -57,41 +53,12 @@ const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkout
     removeExerciseFromWorkout(exerciseId);
   };
 
-  const handleAddSet = (exercise: ExerciseWithLastSet) => {
-    setSelectedExercise(exercise);
-    setEditingSet(null);
-    setShowSetInput(true);
+  const handleAddSet = (exerciseId: string, setData: SetInput) => {
+    addSetToWorkout(exerciseId, setData);
   };
 
-  const handleEditSet = (set: WorkoutSet) => {
-    const exercise = activeWorkoutExercises.find((e) => e._id === set.exerciseId);
-    if (!exercise) return;
-
-    setSelectedExercise(exercise);
-    setEditingSet(set);
-    setShowSetInput(true);
-  };
-
-  const handleSetSubmit = (setData: SetInput) => {
-    if (!selectedExercise) return;
-
-    if (editingSet) {
-      // Update existing set
-      updateSetInWorkout(editingSet._id, setData);
-    } else {
-      // Add new set
-      addSetToWorkout(selectedExercise._id, setData);
-    }
-
-    setShowSetInput(false);
-    setSelectedExercise(null);
-    setEditingSet(null);
-  };
-
-  const handleSetInputCancel = () => {
-    setShowSetInput(false);
-    setSelectedExercise(null);
-    setEditingSet(null);
+  const handleEditSet = (setId: string, setData: SetInput) => {
+    updateSetInWorkout(setId, setData);
   };
 
   const handleEndWorkout = () => {
@@ -195,7 +162,7 @@ const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkout
                 key={exercise._id}
                 exercise={exercise}
                 sets={exerciseSets}
-                onAddSet={() => handleAddSet(exercise)}
+                onAddSet={(setData) => handleAddSet(exercise._id, setData)}
                 onRemoveSet={removeSetFromWorkout}
                 onEditSet={handleEditSet}
                 onRemoveExercise={() => handleRemoveExercise(exercise._id)}
@@ -204,26 +171,6 @@ const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkout
           })
         )}
       </ScrollView>
-
-      {selectedExercise && (
-        <SetInputModal
-          visible={showSetInput}
-          exercise={selectedExercise}
-          onSubmit={handleSetSubmit}
-          onCancel={handleSetInputCancel}
-          initialValues={
-            editingSet
-              ? {
-                  weight: editingSet.weight,
-                  reps: editingSet.reps,
-                  time: editingSet.time,
-                  distance: editingSet.distance,
-                  notes: editingSet.notes,
-                }
-              : undefined
-          }
-        />
-      )}
     </SafeAreaView>
   );
 };

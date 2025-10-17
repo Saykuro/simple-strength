@@ -1,16 +1,18 @@
 import type React from 'react';
+import { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
-import type { ExerciseWithLastSet, WorkoutSet } from '../types';
+import type { ExerciseWithLastSet, SetInput, WorkoutSet } from '../types';
 import { formatSet } from '../utils/calculations';
 import Button from './Button';
 import Card from './Card';
+import InlineSetInput from './InlineSetInput';
 
 export interface WorkoutExerciseCardProps {
   exercise: ExerciseWithLastSet;
   sets: WorkoutSet[];
-  onAddSet: () => void;
+  onAddSet: (setData: SetInput) => void;
   onRemoveSet: (setId: string) => void;
-  onEditSet: (set: WorkoutSet) => void;
+  onEditSet: (setId: string, setData: SetInput) => void;
   onRemoveExercise: () => void;
 }
 
@@ -22,6 +24,9 @@ const WorkoutExerciseCard: React.FC<WorkoutExerciseCardProps> = ({
   onEditSet,
   onRemoveExercise,
 }) => {
+  const [isAddingSet, setIsAddingSet] = useState(false);
+  const [editingSetId, setEditingSetId] = useState<string | null>(null);
+
   const handleRemoveExercise = () => {
     Alert.alert(
       'Übung entfernen',
@@ -38,6 +43,31 @@ const WorkoutExerciseCard: React.FC<WorkoutExerciseCardProps> = ({
       { text: 'Abbrechen', style: 'cancel' },
       { text: 'Entfernen', style: 'destructive', onPress: () => onRemoveSet(setId) },
     ]);
+  };
+
+  const handleAddSetClick = () => {
+    setIsAddingSet(true);
+    setEditingSetId(null);
+  };
+
+  const handleEditSetClick = (setId: string) => {
+    setEditingSetId(setId);
+    setIsAddingSet(false);
+  };
+
+  const handleSetSubmit = (setData: SetInput) => {
+    if (editingSetId) {
+      onEditSet(editingSetId, setData);
+    } else {
+      onAddSet(setData);
+    }
+    setIsAddingSet(false);
+    setEditingSetId(null);
+  };
+
+  const handleSetCancel = () => {
+    setIsAddingSet(false);
+    setEditingSetId(null);
   };
 
   return (
@@ -61,27 +91,65 @@ const WorkoutExerciseCard: React.FC<WorkoutExerciseCardProps> = ({
       <View style={styles.setsContainer}>
         <Text style={styles.setsTitle}>Sätze ({sets.length})</Text>
 
-        {sets.map((set, index) => (
-          <View key={set._id} style={styles.setRow}>
-            <View style={styles.setInfo}>
-              <Text style={styles.setNumber}>{index + 1}.</Text>
-              <Text style={styles.setValue}>{formatSet(set)}</Text>
-            </View>
-            <View style={styles.setActions}>
-              <Pressable onPress={() => onEditSet(set)} style={styles.editButton}>
-                <Text style={styles.editButtonText}>Bearbeiten</Text>
-              </Pressable>
-              <Pressable onPress={() => handleRemoveSet(set._id)} style={styles.removeSetButton}>
-                <Text style={styles.removeSetButtonText}>×</Text>
-              </Pressable>
-            </View>
-          </View>
-        ))}
+        {sets.map((set, index) => {
+          const isEditing = editingSetId === set._id;
 
-        {sets.length === 0 && <Text style={styles.emptySets}>Noch keine Sätze hinzugefügt</Text>}
+          if (isEditing) {
+            return (
+              <InlineSetInput
+                key={set._id}
+                exercise={exercise}
+                initialValues={{
+                  weight: set.weight,
+                  reps: set.reps,
+                  time: set.time,
+                  distance: set.distance,
+                  notes: set.notes,
+                }}
+                onSubmit={handleSetSubmit}
+                onCancel={handleSetCancel}
+                setNumber={index + 1}
+              />
+            );
+          }
+
+          return (
+            <View key={set._id} style={styles.setRow}>
+              <View style={styles.setInfo}>
+                <Text style={styles.setNumber}>{index + 1}.</Text>
+                <Text style={styles.setValue}>{formatSet(set)}</Text>
+              </View>
+              <View style={styles.setActions}>
+                <Pressable onPress={() => handleEditSetClick(set._id)} style={styles.editButton}>
+                  <Text style={styles.editButtonText}>Bearbeiten</Text>
+                </Pressable>
+                <Pressable onPress={() => handleRemoveSet(set._id)} style={styles.removeSetButton}>
+                  <Text style={styles.removeSetButtonText}>×</Text>
+                </Pressable>
+              </View>
+            </View>
+          );
+        })}
+
+        {isAddingSet && (
+          <InlineSetInput
+            exercise={exercise}
+            onSubmit={handleSetSubmit}
+            onCancel={handleSetCancel}
+            setNumber={sets.length + 1}
+          />
+        )}
+
+        {sets.length === 0 && !isAddingSet && <Text style={styles.emptySets}>Noch keine Sätze hinzugefügt</Text>}
       </View>
 
-      <Button title="+ Satz hinzufügen" onPress={onAddSet} variant="secondary" style={styles.addSetButton} />
+      <Button
+        title="+ Satz hinzufügen"
+        onPress={handleAddSetClick}
+        variant="secondary"
+        style={styles.addSetButton}
+        disabled={isAddingSet || editingSetId !== null}
+      />
     </Card>
   );
 };
