@@ -2,6 +2,7 @@ import type React from 'react';
 import { useEffect, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors, typography, spacing } from '../theme';
 import Button from '../components/Button';
 import WorkoutExerciseCard from '../components/WorkoutExerciseCard';
 import { useWorkoutStore } from '../stores/workoutStore';
@@ -178,72 +179,71 @@ const WorkoutTrackingScreen: React.FC<WorkoutTrackingScreenProps> = ({ onWorkout
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: colors.background.primary,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-    gap: 12,
+    paddingHorizontal: spacing[5],
+    paddingVertical: spacing[3],
+    backgroundColor: colors.background.secondary,
+    gap: spacing[3],
   },
   backButton: {
-    paddingVertical: 8,
+    paddingVertical: spacing[2],
   },
   timerContainer: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flex: 1,
   },
   timerLabel: {
-    fontSize: 14,
-    color: '#666666',
-    marginBottom: 4,
+    fontSize: typography.fontSize.sm,
+    color: colors.text.secondary,
+    marginBottom: spacing[0] + 2,
+    fontWeight: typography.fontWeight.regular,
   },
   timer: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#007AFF',
+    fontSize: typography.fontSize['5xl'],
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.info.main,
+    letterSpacing: -1,
   },
   content: {
     flex: 1,
-    paddingHorizontal: 16,
   },
   exercisesHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 8,
+    paddingVertical: spacing[5],
+    paddingHorizontal: spacing[5],
   },
   exercisesTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#333333',
+    fontSize: typography.fontSize.lg,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
   },
   emptyState: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 48,
-    paddingVertical: 64,
+    paddingHorizontal: spacing[12],
+    paddingVertical: spacing[16],
   },
   emptyStateTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#333333',
+    fontSize: typography.fontSize['4xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.primary,
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: spacing[3],
   },
   emptyStateText: {
-    fontSize: 16,
-    color: '#666666',
+    fontSize: typography.fontSize.lg,
+    color: colors.text.secondary,
     textAlign: 'center',
     lineHeight: 24,
-    marginBottom: 32,
+    marginBottom: spacing[8],
   },
   emptyStateButton: {
     minWidth: 200,
@@ -254,8 +254,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   errorText: {
-    fontSize: 18,
-    color: '#FF3B30',
+    fontSize: typography.fontSize.xl - 1,
+    color: colors.error.main,
     textAlign: 'center',
   },
 });

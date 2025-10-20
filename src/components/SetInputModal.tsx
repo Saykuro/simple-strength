@@ -2,6 +2,7 @@ import { Picker } from '@react-native-picker/picker';
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import { Modal, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { colors, typography, borderRadius, spacing } from '../theme';
 import type { Exercise, SetInput } from '../types';
 import Button from './Button';
 import Input from './Input';
@@ -293,49 +294,49 @@ const SetInputModal: React.FC<SetInputModalProps> = ({ visible, exercise, onSubm
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: colors.background.primary,
   },
   header: {
-    paddingHorizontal: 24,
-    paddingTop: 32,
-    paddingBottom: 24,
-    backgroundColor: '#FFFFFF',
+    paddingHorizontal: spacing[6],
+    paddingTop: spacing[8],
+    paddingBottom: spacing[6],
+    backgroundColor: colors.background.secondary,
     borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
+    borderBottomColor: colors.border.primary,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333333',
-    marginBottom: 4,
+    fontSize: typography.fontSize['4xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.primary,
+    marginBottom: spacing[1],
   },
   exerciseName: {
-    fontSize: 18,
-    color: '#007AFF',
-    fontWeight: '600',
+    fontSize: typography.fontSize.xl - 1,
+    color: colors.primary.main,
+    fontWeight: typography.fontWeight.semibold,
   },
   form: {
     flex: 1,
   },
   formContent: {
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    paddingBottom: 24,
+    paddingHorizontal: spacing[6],
+    paddingTop: spacing[6],
+    paddingBottom: spacing[6],
   },
   inputContainer: {
-    marginBottom: 24,
+    marginBottom: spacing[6],
   },
   inputLabel: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 8,
-    color: '#333333',
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.semibold,
+    marginBottom: spacing[2],
+    color: colors.text.primary,
   },
   pickerWrapper: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    backgroundColor: colors.background.elevated,
+    borderRadius: borderRadius.lg,
     borderWidth: 1,
-    borderColor: '#E0E0E0',
+    borderColor: colors.border.primary,
     overflow: 'hidden',
   },
   picker: {
@@ -343,27 +344,27 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   pickerItem: {
-    fontSize: 18,
+    fontSize: typography.fontSize.xl - 1,
     height: Platform.OS === 'ios' ? 180 : undefined,
   },
   timePickerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: spacing[3],
   },
   timeInputRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: spacing[3],
   },
   timePickerWrapper: {
     flex: 1,
   },
   timePickerSubLabel: {
-    fontSize: 14,
-    fontWeight: '500',
-    marginBottom: 4,
-    color: '#666666',
+    fontSize: typography.fontSize.sm + 1,
+    fontWeight: typography.fontWeight.medium,
+    marginBottom: spacing[1],
+    color: colors.text.secondary,
     textAlign: 'center',
   },
   timePicker: {
@@ -375,20 +376,20 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   timeSeparator: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333333',
-    marginTop: Platform.OS === 'ios' ? 20 : 0,
+    fontSize: typography.fontSize['4xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.primary,
+    marginTop: Platform.OS === 'ios' ? spacing[5] : 0,
   },
   actions: {
     flexDirection: 'row',
-    paddingHorizontal: 24,
-    paddingBottom: 32,
-    paddingTop: 16,
-    gap: 12,
-    backgroundColor: '#FFFFFF',
+    paddingHorizontal: spacing[6],
+    paddingBottom: spacing[8],
+    paddingTop: spacing[4],
+    gap: spacing[3],
+    backgroundColor: colors.background.secondary,
     borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
+    borderTopColor: colors.border.primary,
   },
   cancelButton: {
     flex: 1,

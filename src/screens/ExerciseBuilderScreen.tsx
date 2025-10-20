@@ -2,6 +2,7 @@ import type React from 'react';
 import { useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors, typography, spacing, borderRadius, shadows } from '../theme';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
 import Input from '../components/Input';
@@ -166,81 +167,74 @@ const ExerciseBuilderScreen: React.FC<ExerciseBuilderScreenProps> = ({ onComplet
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: colors.background.primary,
   },
   header: {
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 24,
+    paddingHorizontal: spacing[6],
+    paddingTop: spacing[4],
+    paddingBottom: spacing[6],
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#333333',
-    marginBottom: 8,
+    fontSize: typography.fontSize['4xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.primary,
+    marginBottom: spacing[2],
   },
   subtitle: {
-    fontSize: 16,
-    color: '#666666',
+    fontSize: typography.fontSize.md,
+    color: colors.text.secondary,
   },
   content: {
     flex: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: spacing[6],
   },
   section: {
-    marginBottom: 32,
+    marginBottom: spacing[8],
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#333333',
-    marginBottom: 8,
+    fontSize: typography.fontSize['2xl'],
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
+    marginBottom: spacing[2],
   },
   sectionSubtitle: {
-    fontSize: 16,
-    color: '#666666',
-    marginBottom: 16,
+    fontSize: typography.fontSize.md,
+    color: colors.text.secondary,
+    marginBottom: spacing[4],
   },
   trackingOption: {
-    marginBottom: 16,
+    marginBottom: spacing[4],
   },
   trackingDescription: {
-    fontSize: 14,
-    color: '#888888',
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.tertiary,
     marginLeft: 36,
-    marginTop: 4,
+    marginTop: spacing[1],
   },
   previewSection: {
-    marginBottom: 32,
+    marginBottom: spacing[8],
   },
   previewCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: colors.background.tertiary,
+    borderRadius: borderRadius.lg,
+    padding: spacing[4],
+    ...shadows.sm,
   },
   previewTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333333',
-    marginBottom: 8,
+    fontSize: typography.fontSize.xl - 1,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
+    marginBottom: spacing[2],
   },
   previewTracking: {
-    fontSize: 14,
-    color: '#666666',
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.secondary,
   },
   footer: {
     flexDirection: 'row',
-    paddingHorizontal: 24,
-    paddingBottom: 32,
-    gap: 12,
+    paddingHorizontal: spacing[6],
+    paddingBottom: spacing[8],
+    gap: spacing[3],
   },
   cancelButton: {
     flex: 1,

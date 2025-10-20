@@ -1,5 +1,6 @@
 import type React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+import { colors, borderRadius, layout } from '../theme';
 
 export interface CardProps {
   children: React.ReactNode;
@@ -19,23 +20,14 @@ const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: colors.background.secondary,
+    borderRadius: borderRadius.xl,
+    padding: layout.cardPadding,
+    marginVertical: layout.cardMargin.vertical,
+    marginHorizontal: layout.cardMargin.horizontal,
   },
   pressed: {
-    opacity: 0.8,
-    transform: [{ scale: 0.98 }],
+    opacity: 0.9,
   },
 });
 

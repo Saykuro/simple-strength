@@ -1,6 +1,7 @@
 import type React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors, typography, spacing, borderRadius } from '../theme';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import { useExerciseStore } from '../stores/exerciseStore';
@@ -228,80 +229,80 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: colors.background.primary,
   },
   scrollView: {
     flex: 1,
   },
   header: {
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 24,
+    paddingHorizontal: spacing[6],
+    paddingTop: spacing[4],
+    paddingBottom: spacing[6],
     alignItems: 'center',
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#333333',
-    marginBottom: 8,
+    fontSize: typography.fontSize['5xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.primary,
+    marginBottom: spacing[2],
   },
   subtitle: {
-    fontSize: 18,
-    color: '#666666',
+    fontSize: typography.fontSize.xl - 1,
+    color: colors.text.secondary,
   },
   content: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingBottom: 24,
+    paddingHorizontal: spacing[6],
+    paddingBottom: spacing[6],
   },
   statsContainer: {
     flexDirection: 'row',
-    gap: 12,
-    marginBottom: 32,
+    gap: spacing[3],
+    marginBottom: spacing[8],
   },
   statCard: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: spacing[5],
     marginVertical: 0,
     marginHorizontal: 0,
   },
   statNumber: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#007AFF',
-    marginBottom: 4,
+    fontSize: typography.fontSize['4xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.primary.main,
+    marginBottom: spacing[1],
   },
   statLabel: {
-    fontSize: 14,
-    color: '#666666',
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.secondary,
     textAlign: 'center',
   },
   actionsContainer: {
-    marginBottom: 24,
+    marginBottom: spacing[6],
   },
   primaryAction: {
-    marginBottom: 16,
+    marginBottom: spacing[4],
   },
   secondaryActions: {
     flexDirection: 'row',
-    gap: 12,
+    gap: spacing[3],
   },
   secondaryAction: {
     flex: 1,
   },
   activeWorkoutBanner: {
-    backgroundColor: '#FFF3CD',
-    borderColor: '#FFE69C',
+    backgroundColor: colors.warning.background,
+    borderColor: colors.warning.main,
     borderWidth: 1,
-    marginBottom: 16,
+    marginBottom: spacing[4],
     marginHorizontal: 0,
   },
   emptyStateBanner: {
-    backgroundColor: '#D1ECF1',
-    borderColor: '#BEE5EB',
+    backgroundColor: colors.info.background,
+    borderColor: colors.info.main,
     borderWidth: 1,
-    marginBottom: 16,
+    marginBottom: spacing[4],
     marginHorizontal: 0,
   },
   bannerContent: {
@@ -311,69 +312,69 @@ const styles = StyleSheet.create({
   bannerIcon: {
     width: 48,
     height: 48,
-    borderRadius: 24,
-    backgroundColor: '#FFFFFF',
+    borderRadius: borderRadius.full,
+    backgroundColor: colors.background.elevated,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 16,
+    marginRight: spacing[4],
   },
   bannerIconText: {
-    fontSize: 24,
+    fontSize: typography.fontSize['4xl'],
   },
   bannerText: {
     flex: 1,
   },
   bannerTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333333',
-    marginBottom: 4,
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
+    marginBottom: spacing[1],
   },
   bannerSubtitle: {
-    fontSize: 14,
-    color: '#666666',
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.secondary,
   },
   historySection: {
-    marginTop: 24,
+    marginTop: spacing[6],
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#333333',
-    marginBottom: 12,
+    fontSize: typography.fontSize['2xl'],
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
+    marginBottom: spacing[3],
   },
   workoutCard: {
-    marginBottom: 12,
+    marginBottom: spacing[3],
     marginHorizontal: 0,
   },
   workoutHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: spacing[2],
   },
   workoutDate: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333333',
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
   },
   workoutDuration: {
-    fontSize: 14,
-    color: '#666666',
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.secondary,
   },
   workoutStats: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   workoutStat: {
-    fontSize: 14,
-    color: '#999999',
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.tertiary,
   },
   tapHint: {
-    fontSize: 12,
-    color: '#007AFF',
-    marginTop: 8,
-    fontWeight: '500',
+    fontSize: typography.fontSize.xs,
+    color: colors.primary.main,
+    marginTop: spacing[2],
+    fontWeight: typography.fontWeight.medium,
   },
 });
 

@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { colors, typography, borderRadius, spacing } from '../theme';
 import type { Exercise, SetInput } from '../types';
 
 export interface InlineSetInputProps {
@@ -72,7 +73,7 @@ const InlineSetInput: React.FC<InlineSetInputProps> = ({ exercise, initialValues
                 onChangeText={setWeight}
                 placeholder="kg"
                 keyboardType="decimal-pad"
-                placeholderTextColor="#999999"
+                placeholderTextColor={colors.text.tertiary}
                 autoFocus
               />
               <Text style={styles.unit}>kg</Text>
@@ -87,7 +88,7 @@ const InlineSetInput: React.FC<InlineSetInputProps> = ({ exercise, initialValues
                 onChangeText={setReps}
                 placeholder="Wdh"
                 keyboardType="number-pad"
-                placeholderTextColor="#999999"
+                placeholderTextColor={colors.text.tertiary}
                 autoFocus={!exercise.trackWeight}
               />
               <Text style={styles.unit}>Wdh</Text>
@@ -102,7 +103,7 @@ const InlineSetInput: React.FC<InlineSetInputProps> = ({ exercise, initialValues
                 onChangeText={setTimeMinutes}
                 placeholder="0"
                 keyboardType="number-pad"
-                placeholderTextColor="#999999"
+                placeholderTextColor={colors.text.tertiary}
                 maxLength={2}
               />
               <Text style={styles.timeSeparator}>:</Text>
@@ -112,7 +113,7 @@ const InlineSetInput: React.FC<InlineSetInputProps> = ({ exercise, initialValues
                 onChangeText={setTimeSeconds}
                 placeholder="00"
                 keyboardType="number-pad"
-                placeholderTextColor="#999999"
+                placeholderTextColor={colors.text.tertiary}
                 maxLength={2}
               />
             </View>
@@ -126,7 +127,7 @@ const InlineSetInput: React.FC<InlineSetInputProps> = ({ exercise, initialValues
                 onChangeText={setDistance}
                 placeholder="m"
                 keyboardType="number-pad"
-                placeholderTextColor="#999999"
+                placeholderTextColor={colors.text.tertiary}
               />
               <Text style={styles.unit}>m</Text>
             </View>
@@ -159,126 +160,119 @@ const InlineSetInput: React.FC<InlineSetInputProps> = ({ exercise, initialValues
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F0F7FF',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    marginBottom: 8,
-    borderWidth: 2,
-    borderColor: '#007AFF',
+    backgroundColor: colors.background.elevated,
+    paddingVertical: spacing[3] + 2,
+    paddingHorizontal: spacing[4],
+    borderRadius: borderRadius.lg,
+    marginBottom: spacing[2],
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: spacing[2] + 2,
   },
   setNumber: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#666666',
-    minWidth: 24,
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.secondary,
+    minWidth: 28,
   },
   inputsContainer: {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 12,
-    marginLeft: 8,
+    gap: spacing[2] + 2,
+    marginLeft: spacing[2],
   },
   inputGroup: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-    minWidth: 80,
+    backgroundColor: colors.background.overlay,
+    borderRadius: borderRadius.md,
+    paddingHorizontal: spacing[3] + 2,
+    paddingVertical: spacing[2] + 3,
+    minWidth: 90,
   },
   input: {
-    fontSize: 16,
-    color: '#333333',
-    fontWeight: '600',
-    minWidth: 40,
+    fontSize: typography.fontSize.lg,
+    color: colors.text.primary,
+    fontWeight: typography.fontWeight.semibold,
+    minWidth: 42,
     padding: 0,
   },
   unit: {
-    fontSize: 14,
-    color: '#666666',
-    marginLeft: 4,
+    fontSize: typography.fontSize.base,
+    color: colors.text.tertiary,
+    marginLeft: spacing[1] + 2,
+    fontWeight: typography.fontWeight.medium,
   },
   timeInputGroup: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-    gap: 4,
+    backgroundColor: colors.background.overlay,
+    borderRadius: borderRadius.md,
+    paddingHorizontal: spacing[3] + 2,
+    paddingVertical: spacing[2] + 3,
+    gap: spacing[1] + 2,
   },
   timeInput: {
-    fontSize: 16,
-    color: '#333333',
-    fontWeight: '600',
-    minWidth: 30,
+    fontSize: typography.fontSize.lg,
+    color: colors.text.primary,
+    fontWeight: typography.fontWeight.semibold,
+    minWidth: 34,
     textAlign: 'center',
     padding: 0,
   },
   timeSeparator: {
-    fontSize: 16,
-    color: '#666666',
-    fontWeight: 'bold',
+    fontSize: typography.fontSize.lg,
+    color: colors.text.tertiary,
+    fontWeight: typography.fontWeight.semibold,
   },
   notesInput: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-    fontSize: 14,
-    color: '#333333',
-    minHeight: 40,
-    marginBottom: 8,
+    backgroundColor: colors.background.overlay,
+    borderRadius: borderRadius.md,
+    paddingHorizontal: spacing[3] + 2,
+    paddingVertical: spacing[2] + 3,
+    fontSize: typography.fontSize.base,
+    color: colors.text.primary,
+    minHeight: 44,
+    marginBottom: spacing[2] + 2,
   },
   actions: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    gap: 8,
+    gap: spacing[2] + 2,
   },
   cancelButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#FF3B30',
+    width: 38,
+    height: 38,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.error.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
   cancelButtonText: {
-    color: '#FFFFFF',
-    fontSize: 20,
-    fontWeight: 'bold',
-    lineHeight: 24,
+    color: colors.error.main,
+    fontSize: typography.fontSize.xl - 1,
+    fontWeight: typography.fontWeight.bold,
+    lineHeight: 22,
   },
   submitButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#34C759',
+    width: 38,
+    height: 38,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.success.main,
     alignItems: 'center',
     justifyContent: 'center',
   },
   submitButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: colors.text.primary,
+    fontSize: typography.fontSize.xl - 1,
+    fontWeight: typography.fontWeight.bold,
     lineHeight: 22,
   },
   submitButtonTextDisabled: {
-    opacity: 0.5,
+    opacity: 0.3,
   },
 });
 

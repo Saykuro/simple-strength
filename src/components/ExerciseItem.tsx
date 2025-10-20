@@ -1,5 +1,6 @@
 import type React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { colors, typography, borderRadius, spacing } from '../theme';
 import type { Exercise, WorkoutSet } from '../types';
 import { formatSet } from '../utils/calculations';
 import Card from './Card';
@@ -52,46 +53,46 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: spacing[2],
   },
   name: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333333',
+    fontSize: typography.fontSize.xl - 1,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
     flex: 1,
   },
   popularBadge: {
-    backgroundColor: '#34C759',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
+    backgroundColor: colors.success.main,
+    paddingHorizontal: spacing[2],
+    paddingVertical: spacing[1],
+    borderRadius: borderRadius.lg,
   },
   popularText: {
-    color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: '600',
+    color: colors.text.primary,
+    fontSize: typography.fontSize.xs,
+    fontWeight: typography.fontWeight.semibold,
   },
   components: {
-    fontSize: 14,
-    color: '#666666',
-    marginBottom: 8,
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.secondary,
+    marginBottom: spacing[2],
   },
   lastSetContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 8,
+    paddingTop: spacing[2],
     borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
+    borderTopColor: colors.border.primary,
   },
   lastSetLabel: {
-    fontSize: 14,
-    color: '#666666',
-    marginRight: 8,
+    fontSize: typography.fontSize.sm + 1,
+    color: colors.text.secondary,
+    marginRight: spacing[2],
   },
   lastSetValue: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#007AFF',
+    fontSize: typography.fontSize.sm + 1,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.primary.main,
   },
 });
 

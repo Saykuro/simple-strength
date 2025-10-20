@@ -1,6 +1,7 @@
 import type React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors, typography, spacing, borderRadius } from '../theme';
 import Button from '../components/Button';
 import ExerciseItem from '../components/ExerciseItem';
 import Input from '../components/Input';
@@ -116,44 +117,44 @@ const ExerciseLibraryScreen: React.FC<ExerciseLibraryScreenProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: colors.background.primary,
   },
   header: {
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 16,
+    paddingHorizontal: spacing[6],
+    paddingTop: spacing[4],
+    paddingBottom: spacing[4],
   },
   headerTop: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: spacing[3],
   },
   backButton: {
-    paddingVertical: 8,
+    paddingVertical: spacing[2],
   },
   headerTitles: {
     flex: 1,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#333333',
-    marginBottom: 4,
+    fontSize: typography.fontSize['4xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.primary,
+    marginBottom: spacing[1],
   },
   subtitle: {
-    fontSize: 16,
-    color: '#666666',
+    fontSize: typography.fontSize.md,
+    color: colors.text.secondary,
   },
   searchContainer: {
-    paddingHorizontal: 24,
-    marginBottom: 16,
+    paddingHorizontal: spacing[6],
+    marginBottom: spacing[4],
   },
   searchInput: {
     marginBottom: 0,
   },
   actionsContainer: {
-    paddingHorizontal: 24,
-    marginBottom: 16,
+    paddingHorizontal: spacing[6],
+    marginBottom: spacing[4],
   },
   createNewButton: {
     alignSelf: 'flex-start',
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContent: {
-    paddingBottom: 32,
+    paddingBottom: spacing[8],
   },
   exerciseItemContainer: {
     position: 'relative',
@@ -172,38 +173,38 @@ const styles = StyleSheet.create({
   },
   selectedIndicator: {
     position: 'absolute',
-    top: 16,
-    right: 32,
-    backgroundColor: '#34C759',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
+    top: spacing[4],
+    right: spacing[8],
+    backgroundColor: colors.success.main,
+    paddingHorizontal: spacing[3],
+    paddingVertical: spacing[1] + 2,
+    borderRadius: borderRadius['2xl'],
   },
   selectedText: {
-    color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: '600',
+    color: colors.text.primary,
+    fontSize: typography.fontSize.xs,
+    fontWeight: typography.fontWeight.semibold,
   },
   emptyStateContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 48,
-    paddingVertical: 64,
+    paddingHorizontal: spacing[12],
+    paddingVertical: spacing[16],
   },
   emptyStateTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#333333',
+    fontSize: typography.fontSize['4xl'],
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.text.primary,
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: spacing[3],
   },
   emptyStateText: {
-    fontSize: 16,
-    color: '#666666',
+    fontSize: typography.fontSize.md,
+    color: colors.text.secondary,
     textAlign: 'center',
     lineHeight: 24,
-    marginBottom: 32,
+    marginBottom: spacing[8],
   },
   createButton: {
     minWidth: 200,

@@ -1,5 +1,6 @@
 import type React from 'react';
 import { StyleSheet, Text, TextInput, type TextStyle, View, type ViewStyle } from 'react-native';
+import { colors, typography, borderRadius, spacing, layout } from '../theme';
 
 export interface InputProps {
   label?: string;
@@ -53,7 +54,7 @@ const Input: React.FC<InputProps> = ({
         multiline={multiline}
         numberOfLines={numberOfLines}
         editable={editable}
-        placeholderTextColor="#999999"
+        placeholderTextColor={colors.text.disabled}
       />
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
@@ -62,42 +63,42 @@ const Input: React.FC<InputProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    marginBottom: spacing[4],
   },
   label: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 8,
-    color: '#333333',
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.semibold,
+    marginBottom: spacing[2],
+    color: colors.text.primary,
   },
   required: {
-    color: '#FF3B30',
+    color: colors.error.main,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#DDDDDD',
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 16,
-    color: '#333333',
-    backgroundColor: '#FFFFFF',
+    borderColor: colors.border.primary,
+    borderRadius: borderRadius.md,
+    paddingHorizontal: layout.inputPadding.horizontal,
+    paddingVertical: layout.inputPadding.vertical,
+    fontSize: typography.fontSize.md,
+    color: colors.text.primary,
+    backgroundColor: colors.background.elevated,
   },
   multilineInput: {
-    paddingTop: 12,
+    paddingTop: spacing[3],
     textAlignVertical: 'top',
   },
   inputError: {
-    borderColor: '#FF3B30',
+    borderColor: colors.error.main,
   },
   disabled: {
-    backgroundColor: '#F5F5F5',
-    color: '#999999',
+    backgroundColor: colors.background.tertiary,
+    color: colors.text.disabled,
   },
   errorText: {
-    color: '#FF3B30',
-    fontSize: 14,
-    marginTop: 4,
+    color: colors.error.main,
+    fontSize: typography.fontSize.sm,
+    marginTop: spacing[1],
   },
 });
 

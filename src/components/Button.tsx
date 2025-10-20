@@ -1,5 +1,6 @@
 import type React from 'react';
 import { Pressable, StyleSheet, Text, type TextStyle, type ViewStyle } from 'react-native';
+import { colors, typography, borderRadius, layout } from '../theme';
 
 export interface ButtonProps {
   title: string;
@@ -40,71 +41,67 @@ const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 8,
+    borderRadius: borderRadius.lg,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
   },
 
   // Variants
   primary: {
-    backgroundColor: '#007AFF',
-    borderColor: '#007AFF',
+    backgroundColor: colors.primary.main,
   },
   secondary: {
-    backgroundColor: 'transparent',
-    borderColor: '#007AFF',
+    backgroundColor: colors.background.tertiary,
   },
   danger: {
-    backgroundColor: '#FF3B30',
-    borderColor: '#FF3B30',
+    backgroundColor: colors.error.main,
   },
 
   // Sizes
   small: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: layout.buttonPadding.small.vertical,
+    paddingHorizontal: layout.buttonPadding.small.horizontal,
   },
   medium: {
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: layout.buttonPadding.medium.vertical,
+    paddingHorizontal: layout.buttonPadding.medium.horizontal,
   },
   large: {
-    paddingVertical: 16,
-    paddingHorizontal: 32,
+    paddingVertical: layout.buttonPadding.large.vertical,
+    paddingHorizontal: layout.buttonPadding.large.horizontal,
   },
 
   // Text styles
   text: {
-    fontWeight: '600',
+    fontWeight: typography.fontWeight.semibold,
   },
   primaryText: {
-    color: '#FFFFFF',
+    color: colors.text.inverse,
   },
   secondaryText: {
-    color: '#007AFF',
+    color: colors.info.main,
   },
   dangerText: {
-    color: '#FFFFFF',
+    color: colors.text.primary,
   },
 
   // Size-specific text styles
   smallText: {
-    fontSize: 14,
+    fontSize: typography.fontSize.base,
   },
   mediumText: {
-    fontSize: 16,
+    fontSize: typography.fontSize.lg,
   },
   largeText: {
-    fontSize: 18,
+    fontSize: typography.fontSize.xl,
   },
 
   // States
   pressed: {
-    opacity: 0.7,
+    opacity: 0.85,
   },
   disabled: {
-    opacity: 0.5,
+    opacity: 0.3,
   },
 });
 

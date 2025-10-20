@@ -1,5 +1,6 @@
 import type React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { colors, typography, borderRadius, spacing } from '../theme';
 
 export interface CheckboxProps {
   label: string;
@@ -27,31 +28,31 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: spacing[2],
   },
   checkbox: {
     width: 24,
     height: 24,
     borderWidth: 2,
-    borderColor: '#DDDDDD',
-    borderRadius: 4,
+    borderColor: colors.border.primary,
+    borderRadius: borderRadius.xs,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 12,
-    backgroundColor: '#FFFFFF',
+    marginRight: spacing[3],
+    backgroundColor: colors.background.elevated,
   },
   checkedCheckbox: {
-    backgroundColor: '#007AFF',
-    borderColor: '#007AFF',
+    backgroundColor: colors.primary.main,
+    borderColor: colors.primary.main,
   },
   checkmark: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: colors.text.primary,
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.bold,
   },
   label: {
-    fontSize: 16,
-    color: '#333333',
+    fontSize: typography.fontSize.md,
+    color: colors.text.primary,
     flex: 1,
   },
   pressed: {
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   disabledText: {
-    color: '#999999',
+    color: colors.text.disabled,
   },
 });
 
